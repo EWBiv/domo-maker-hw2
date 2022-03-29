@@ -22,6 +22,11 @@ const DomoSchema = new mongoose.Schema({
     required: true,
     ref: 'Account',
   },
+  level: {
+    type: Number,
+    min: 1,
+    required: true
+  },
   createdDate: {
     type: Date,
     default: Date.now,
@@ -31,6 +36,7 @@ const DomoSchema = new mongoose.Schema({
 DomoSchema.statics.toAPI = (doc) => ({
   name: doc.name,
   age: doc.age,
+  level: doc.level
 });
 
 DomoSchema.statics.findByOwner = (ownerId, callback) => {
@@ -41,7 +47,7 @@ DomoSchema.statics.findByOwner = (ownerId, callback) => {
   // Find data given the query above (user ID), give me the name and age,
   // lean object returned, exec is for mongoose sake
   // Then call the callback after all that!
-  return DomoModel.find(search).select('name age').lean().exec(callback);
+  return DomoModel.find(search).select('name age level').lean().exec(callback);
 };
 
 DomoModel = mongoose.model('Domo', DomoSchema);
