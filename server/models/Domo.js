@@ -53,7 +53,7 @@ DomoSchema.statics.findByOwner = (ownerId, callback) => {
 // https://stackoverflow.com/questions/2824157/random-record-from-mongodb
 // https://www.mongodb.com/docs/manual/reference/operator/aggregation/sample/
 // https://www.mongodb.com/docs/manual/aggregation/
-DomoSchema.statics.findRandomDomo = (callback) => DomoModel.aggregate([{ $sample: { size: 1 } }]).select('name age level').lean().exec(callback);
+DomoSchema.statics.findRandomDomo = (callback) => DomoModel.aggregate([{ $sample: { size: 1 } }]).exec(callback);
 
 DomoModel = mongoose.model('Domo', DomoSchema);
 

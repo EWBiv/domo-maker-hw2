@@ -122,12 +122,24 @@ const SignupWindow = (props) => {
   );
 }
 
+const Domo = (props) => {
+  return (
+    <div key={props.domo._id} className="domo">
+      <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />
+      <h3 className="domoName"> Name: {props.domo.name} </h3>
+      <h3 className="domoAge"> Age: {props.domo.age} </h3>
+      <h3 className="domoLevel"> Level: {props.domo.level} </h3>
+    </div>
+  );
+}
+
 const randomDomoFromServer = async () => {
-  const response = await fetch('/getRandomDomo');
+  const response = await fetch('/randomDomo');
   console.log(response);
   const data = await response.json();
+  console.log(data);
   ReactDOM.render(
-    <Domo domos={data.domo} />,
-    document.getElementById('random-domo')
+    <Domo domo={data.domo}/>,
+    document.querySelector('#random')
   );
 }
