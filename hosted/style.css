@@ -201,7 +201,24 @@ nav:nth-child(1) {
     margin-top: 100px;
 }
 
+#random-domo {
+    width: 40%;
+    min-width: 400px;
+    border: 2px solid #55acee;
+    border-radius: 4px;
+    margin: 0 auto;
+    margin-top: .5rem;
+}
+
 .domo {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid #55acee;
+    border-radius: 4px;
+    background-color: #55acee;
+}
+
+/* .domo {
     width: 95%;
     margin: 0 auto;
     margin-top: 2px;
@@ -212,7 +229,7 @@ nav:nth-child(1) {
     padding: 10px;
     min-height:60px;
     overflow: hidden;
-}
+} */
 
 .domo:hover {
     transition: border-color 0.2s ease-out;
@@ -239,21 +256,15 @@ h3.emptyDomo {
     margin-top: 18px;
 }
 
-h3.domoName {
-    float:left;
-    width: 200px;
+h3.domoName, h3.domoAge, h3.domoLevel {
+    width: 150px;
     font-weight: bold;
-    padding-left: 65px;
+    padding-inline: 35px;
     font-size: 1.5em;
 }
 
-h3.domoAge {
-    float:right;
-    text-align: left;
-    width: 100px;
-    font-weight: bold;
-    padding-right: 40px;
-    font-size: 1.5em;
+h3.domoName {
+    width: 200px;
 }
 
 .domo:first-child {
@@ -262,4 +273,14 @@ h3.domoAge {
 
 .domo:last-child {
     margin-bottom:10px;
+}
+
+#random-header {
+    padding-bottom: .5rem;
+    text-align: center;
+}
+
+#random-text {
+    padding-top: .5rem;
+    text-align: center;
 }

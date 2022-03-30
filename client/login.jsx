@@ -16,6 +16,8 @@ const init = async () => {
   const loginButton = document.getElementById('loginButton');
   const signupButton = document.getElementById('signupButton');
   const content = document.getElementById('content');
+  const randomDomo = document.querySelector('#random');
+  console.log(randomDomo);
 
   loginButton.addEventListener('click', (e) => {
     e.preventDefault();
@@ -31,10 +33,9 @@ const init = async () => {
     return false;
   })
 
-  ReactDOM.render(<LoginWindow csrf={data.csrfToken} />,
-    content);
+  ReactDOM.render(<LoginWindow csrf={data.csrfToken} />, content);
 
-  randomDomoFromServer();
+  randomDomoFromServer(randomDomo);
 };
 
 window.onload = init;
@@ -123,23 +124,24 @@ const SignupWindow = (props) => {
 }
 
 const Domo = (props) => {
-  return (
-    <div key={props.domo._id} className="domo">
-      <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />
-      <h3 className="domoName"> Name: {props.domo.name} </h3>
-      <h3 className="domoAge"> Age: {props.domo.age} </h3>
-      <h3 className="domoLevel"> Level: {props.domo.level} </h3>
-    </div>
-  );
+  console.log(props);
+  console.log(props.domo);
+  if(props.domo[0]) {
+    return (
+      <div key={props.domo._id} className="domo">
+        <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />
+        <h3 className="domoName"> Name: {props.domo[0].name} </h3>
+        <h3 className="domoAge"> Age: {props.domo[0].age} </h3>
+        <h3 className="domoLevel"> Level: {props.domo[0].level} </h3>
+      </div>
+    );
+  }
 }
 
-const randomDomoFromServer = async () => {
+const randomDomoFromServer = async (content) => {
   const response = await fetch('/randomDomo');
   console.log(response);
   const data = await response.json();
-  console.log(data);
-  ReactDOM.render(
-    <Domo domo={data.domo}/>,
-    document.querySelector('#random')
-  );
+  console.log(data.domo);
+  ReactDOM.render(<Domo domo={data.domo}/>,content);
 }
