@@ -3,9 +3,7 @@ const DomoModel = require('../models/Domo');
 
 const { Domo } = models;
 
-const makerPage = (req, res) => {
-  return res.render('app');
-};
+const makerPage = (req, res) => res.render('app');
 
 const makeDomo = async (req, res) => {
   if (!req.body.name || !req.body.age || !req.body.level) {
@@ -16,7 +14,7 @@ const makeDomo = async (req, res) => {
     name: req.body.name,
     age: req.body.age,
     owner: req.session.account._id,
-    level: req.body.level
+    level: req.body.level,
   };
 
   try {
@@ -32,19 +30,25 @@ const makeDomo = async (req, res) => {
   }
 };
 
-const getDomos = (req, res) => {
-  return DomoModel.findByOwner(req.session.account._id, (err, docs) => {
-    if (err) {
-      console.log(err);
-      return res.status(400).json({ error: 'An error occurred!' });
-    }
+const getDomos = (req, res) => DomoModel.findByOwner(req.session.account._id, (err, docs) => {
+  if (err) {
+    console.log(err);
+    return res.status(400).json({ error: 'An error occurred!' });
+  }
+  return res.json({ domos: docs });
+});
 
-    return res.json({ domos: docs });
-  });
-}
+const getRandomDomo = (req, res) => DomoModel.findRandomDomo((err, docs) => {
+  if (err) {
+    console.log(err);
+    return res.status(400).json({ error: 'An error occurred!' });
+  }
+  return res.json({ domo: docs });
+});
 
 module.exports = {
   makerPage,
   makeDomo,
   getDomos,
+  getRandomDomo,
 };

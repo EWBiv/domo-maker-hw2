@@ -25,7 +25,7 @@ const DomoSchema = new mongoose.Schema({
   level: {
     type: Number,
     min: 1,
-    required: true
+    required: true,
   },
   createdDate: {
     type: Date,
@@ -36,7 +36,7 @@ const DomoSchema = new mongoose.Schema({
 DomoSchema.statics.toAPI = (doc) => ({
   name: doc.name,
   age: doc.age,
-  level: doc.level
+  level: doc.level,
 });
 
 DomoSchema.statics.findByOwner = (ownerId, callback) => {
@@ -49,6 +49,11 @@ DomoSchema.statics.findByOwner = (ownerId, callback) => {
   // Then call the callback after all that!
   return DomoModel.find(search).select('name age level').lean().exec(callback);
 };
+
+// https://stackoverflow.com/questions/2824157/random-record-from-mongodb
+// https://www.mongodb.com/docs/manual/reference/operator/aggregation/sample/
+// https://www.mongodb.com/docs/manual/aggregation/
+DomoSchema.statics.findRandomDomo = (callback) => DomoModel.aggregate([{ $sample: { size: 1 } }]).select('name age level').lean().exec(callback);
 
 DomoModel = mongoose.model('Domo', DomoSchema);
 

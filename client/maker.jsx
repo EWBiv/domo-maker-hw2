@@ -86,6 +86,17 @@ const DomoList = (props) => {
   );
 }
 
+const Domo = (props) => {
+  return (
+    <div key={props.domo._id} className="domo">
+      <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />
+      <h3 className="domoName"> Name: {props.domo.name} </h3>
+      <h3 className="domoAge"> Age: {props.domo.age} </h3>
+      <h3 className="domoLevel"> Level: {props.domo.level} </h3>
+    </div>
+  );
+}
+
 const loadDomosFromServer = async () => {
   const response = await fetch('/getDomos');
   const data = await response.json();

@@ -1,4 +1,5 @@
 // https://stackoverflow.com/questions/2824157/random-record-from-mongodb
+// https://www.mongodb.com/docs/manual/reference/operator/aggregation/sample/
 // idea for front page - random domo appears
 // will have to wipe database (mongo) b/c there will be ones w/out levels
 // then get everything for submitting
@@ -32,6 +33,8 @@ const init = async () => {
 
   ReactDOM.render(<LoginWindow csrf={data.csrfToken} />,
     content);
+
+  randomDomoFromServer();
 };
 
 window.onload = init;
@@ -116,5 +119,15 @@ const SignupWindow = (props) => {
       <input className="formSubmit" type="submit" value="Signup" />
     </form>
 
+  );
+}
+
+const randomDomoFromServer = async () => {
+  const response = await fetch('/getRandomDomo');
+  console.log(response);
+  const data = await response.json();
+  ReactDOM.render(
+    <Domo domos={data.domo} />,
+    document.getElementById('random-domo')
   );
 }
