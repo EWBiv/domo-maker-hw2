@@ -38,6 +38,8 @@ const getDomos = (req, res) => DomoModel.findByOwner(req.session.account._id, (e
   return res.json({ domos: docs });
 });
 
+// Couldn't really move this and above function into one reusable function since the
+// second arrow function needs req/res
 const getRandomDomo = (req, res) => DomoModel.findRandomDomo((err, docs) => {
   if (err) {
     console.log(err);

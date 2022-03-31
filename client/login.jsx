@@ -1,12 +1,3 @@
-// https://stackoverflow.com/questions/2824157/random-record-from-mongodb
-// https://www.mongodb.com/docs/manual/reference/operator/aggregation/sample/
-// idea for front page - random domo appears
-// will have to wipe database (mongo) b/c there will be ones w/out levels
-// then get everything for submitting
-// then submit D & E
-
-
-
 const helper = require('./helper.js'); // webpack lets us use require
 
 const init = async () => {
@@ -123,19 +114,26 @@ const SignupWindow = (props) => {
   );
 }
 
-const Domo = (props) => {
-  console.log(props);
-  console.log(props.domo);
+const ExampleDomo = (props) => {
+  let tempName,tempAge,tempLevel;
   if(props.domo[0]) {
-    return (
-      <div key={props.domo._id} className="domo">
-        <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />
-        <h3 className="domoName"> Name: {props.domo[0].name} </h3>
-        <h3 className="domoAge"> Age: {props.domo[0].age} </h3>
-        <h3 className="domoLevel"> Level: {props.domo[0].level} </h3>
-      </div>
-    );
+    tempName = props.domo[0].name;
+    tempAge = props.domo[0].age;
+    tempLevel = props.domo[0].level;
+  } else {
+    tempName = 'Placeholder';
+    tempAge = '100';
+    tempLevel = '100';
   }
+
+  return (
+    <div key={props.domo._id} className="domo">
+      <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />
+      <h3 className="domoName"> Name: {tempName} </h3>
+      <h3 className="domoAge"> Age: {tempAge} </h3>
+      <h3 className="domoLevel"> Level: {tempLevel} </h3>
+    </div>
+  );
 }
 
 const randomDomoFromServer = async (content) => {
@@ -143,5 +141,5 @@ const randomDomoFromServer = async (content) => {
   console.log(response);
   const data = await response.json();
   console.log(data.domo);
-  ReactDOM.render(<Domo domo={data.domo}/>,content);
+  ReactDOM.render(<ExampleDomo domo={data.domo}/>,content);
 }

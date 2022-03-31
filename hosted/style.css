@@ -47,18 +47,18 @@ nav:nth-child(1) {
     background-color: #66bdff;
 }
 
-.domoForm {
-    border: 2px solid #338acc;
-    height: 35px;
-    width: 700px;
+#domoForm {
     margin-top:0px;
     padding-top:10px;
     background-color: #55acee;
+    border: 2px solid #338acc;
+    display:flex;
+    flex-direction: row;
     border-bottom-right-radius: 4px;
     border-top-right-radius: 4px;
 }
 
-.domoForm label {
+#domoForm label {
     display: inline-block;
     width: 75px;
     margin-left: 10px;
@@ -67,7 +67,7 @@ nav:nth-child(1) {
     color: white;
 }
 
-.domoForm input[type=text] {
+#domoForm input[type=text] {
     float:left;
 }
 
@@ -192,23 +192,15 @@ nav:nth-child(1) {
     transform: rotate(330deg);
 }
 
-#domos {
-    width: 40%;
-    min-width: 400px;
-    border: 2px solid #55acee;
-    border-radius: 4px;
-    margin: 0 auto;
-    margin-top: 100px;
-}
-
-#random-domo {
-    width: 40%;
+#domos, #random-domo {
+    width: 55%;
     min-width: 400px;
     border: 2px solid #55acee;
     border-radius: 4px;
     margin: 0 auto;
     margin-top: .5rem;
 }
+
 
 .domo {
     display: flex;
