@@ -8,7 +8,6 @@ const init = async () => {
   const signupButton = document.getElementById('signupButton');
   const content = document.getElementById('content');
   const randomDomo = document.querySelector('#random');
-  console.log(randomDomo);
 
   loginButton.addEventListener('click', (e) => {
     e.preventDefault();
@@ -138,8 +137,6 @@ const ExampleDomo = (props) => {
 
 const randomDomoFromServer = async (content) => {
   const response = await fetch('/randomDomo');
-  console.log(response);
   const data = await response.json();
-  console.log(data.domo);
   ReactDOM.render(<ExampleDomo domo={data.domo}/>,content);
 }
