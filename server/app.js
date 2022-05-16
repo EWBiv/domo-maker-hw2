@@ -16,7 +16,7 @@ const router = require('./router.js');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
-const dbURI = process.env.MONGODB_URI || 'mongodb://127.0.0.1/DomoMaker';
+const dbURI = process.env.MONGODB_URI;
 mongoose.connect(dbURI, (err) => {
   if (err) {
     console.log('Could not connect to database');
@@ -24,7 +24,7 @@ mongoose.connect(dbURI, (err) => {
   }
 });
 
-const redisURL = process.env.REDISCLOUD_URL || 'redis://default:PBPkaT7nwD2xjKpRLNhoq5iamkIXXxM3@redis-13299.c16.us-east-1-3.ec2.cloud.redislabs.com:13299';
+const redisURL = process.env.REDISCLOUD_URL;
 
 const redisClient = redis.createClient({
   legacyMode: true,
